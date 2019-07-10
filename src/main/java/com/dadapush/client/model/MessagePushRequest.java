@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * MessagePushRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-07-10T10:11:56.286885+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-07-10T10:14:33.658361+08:00[Asia/Shanghai]")
 public class MessagePushRequest {
   public static final String SERIALIZED_NAME_ACTIONS = "actions";
   @SerializedName(SERIALIZED_NAME_ACTIONS)
