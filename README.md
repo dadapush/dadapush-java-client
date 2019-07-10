@@ -2,7 +2,7 @@
 
 DaDaPush Public API
 - API version: v1
-  - Build date: 2019-07-10T10:14:33.658361+08:00[Asia/Shanghai]
+  - Build date: 2019-07-10T10:15:06.525252+08:00[Asia/Shanghai]
 
 DaDaPush: Real-time Notifications App Send real-time notifications through our API without coding and maintaining your own app for iOS or Android devices.
 
