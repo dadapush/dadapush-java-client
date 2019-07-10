@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * PageResponseOfMessageObject
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-07-10T10:15:06.525252+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-07-10T21:57:17.209285+08:00[Asia/Shanghai]")
 public class PageResponseOfMessageObject {
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)

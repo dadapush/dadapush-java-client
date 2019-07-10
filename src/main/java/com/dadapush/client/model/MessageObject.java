@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * MessageObject
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-07-10T10:15:06.525252+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-07-10T21:57:17.209285+08:00[Asia/Shanghai]")
 public class MessageObject {
   public static final String SERIALIZED_NAME_ACTIONS = "actions";
   @SerializedName(SERIALIZED_NAME_ACTIONS)
@@ -127,7 +127,7 @@ public class MessageObject {
    * Get createdAt
    * @return createdAt
   **/
-  @ApiModelProperty(example = "2019-07-01 12:45:30", required = true, value = "")
+  @ApiModelProperty(example = "2015-07-25T23:09:01.795+0700", required = true, value = "")
   public String getCreatedAt() {
     return createdAt;
   }
