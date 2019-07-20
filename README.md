@@ -130,11 +130,6 @@ Class | Method | HTTP request | Description
  - [ResultOfPageResponseOfMessageObject](docs/ResultOfPageResponseOfMessageObject.md)
 
 
-## Documentation for Authorization
-
-All endpoints do not require authorization.
-Authentication schemes defined for the API:
-
 ## Recommendation
 
 It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
