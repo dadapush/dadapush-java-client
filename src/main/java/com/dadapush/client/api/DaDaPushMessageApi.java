@@ -19,12 +19,8 @@ import com.dadapush.client.ApiException;
 import com.dadapush.client.ApiResponse;
 import com.dadapush.client.Configuration;
 import com.dadapush.client.Pair;
-import com.dadapush.client.ProgressRequestBody;
-import com.dadapush.client.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
 
 
 import com.dadapush.client.model.MessagePushRequest;
@@ -61,7 +57,7 @@ public class DaDaPushMessageApi {
     /**
      * Build call for createMessage
      * @param body body (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -71,7 +67,7 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createMessageCall(MessagePushRequest body, String xChannelToken, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createMessageCall(MessagePushRequest body, String channelToken, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -80,8 +76,8 @@ public class DaDaPushMessageApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xChannelToken != null) {
-            localVarHeaderParams.put("x-channel-token", localVarApiClient.parameterToString(xChannelToken));
+        if (channelToken != null) {
+            localVarHeaderParams.put("x-channel-token", localVarApiClient.parameterToString(channelToken));
         }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
@@ -104,7 +100,7 @@ public class DaDaPushMessageApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createMessageValidateBeforeCall(MessagePushRequest body, String xChannelToken, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createMessageValidateBeforeCall(MessagePushRequest body, String channelToken, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'body' is set
         if (body == null) {
@@ -112,7 +108,7 @@ public class DaDaPushMessageApi {
         }
         
 
-        okhttp3.Call localVarCall = createMessageCall(body, xChannelToken, _callback);
+        okhttp3.Call localVarCall = createMessageCall(body, channelToken, _callback);
         return localVarCall;
 
     }
@@ -121,7 +117,7 @@ public class DaDaPushMessageApi {
      * push Message to a Channel
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;1 request per 1s&lt;/li&gt;&lt;li&gt;30 request per 1m&lt;/li&gt;&lt;li&gt;500 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param body body (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @return ResultOfMessagePushResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -130,8 +126,9 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ResultOfMessagePushResponse createMessage(MessagePushRequest body, String xChannelToken) throws ApiException {
-        ApiResponse<ResultOfMessagePushResponse> localVarResp = createMessageWithHttpInfo(body, xChannelToken);
+    public ResultOfMessagePushResponse createMessage(MessagePushRequest body, String channelToken) throws ApiException {
+        ApiResponse<ResultOfMessagePushResponse> localVarResp = createMessageWithHttpInfo(body,
+            channelToken);
         return localVarResp.getData();
     }
 
@@ -139,7 +136,7 @@ public class DaDaPushMessageApi {
      * push Message to a Channel
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;1 request per 1s&lt;/li&gt;&lt;li&gt;30 request per 1m&lt;/li&gt;&lt;li&gt;500 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param body body (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @return ApiResponse&lt;ResultOfMessagePushResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -148,8 +145,8 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ResultOfMessagePushResponse> createMessageWithHttpInfo(MessagePushRequest body, String xChannelToken) throws ApiException {
-        okhttp3.Call localVarCall = createMessageValidateBeforeCall(body, xChannelToken, null);
+    public ApiResponse<ResultOfMessagePushResponse> createMessageWithHttpInfo(MessagePushRequest body, String channelToken) throws ApiException {
+        okhttp3.Call localVarCall = createMessageValidateBeforeCall(body, channelToken, null);
         Type localVarReturnType = new TypeToken<ResultOfMessagePushResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -158,7 +155,7 @@ public class DaDaPushMessageApi {
      * push Message to a Channel (asynchronously)
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;1 request per 1s&lt;/li&gt;&lt;li&gt;30 request per 1m&lt;/li&gt;&lt;li&gt;500 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param body body (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -168,9 +165,9 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createMessageAsync(MessagePushRequest body, String xChannelToken, final ApiCallback<ResultOfMessagePushResponse> _callback) throws ApiException {
+    public okhttp3.Call createMessageAsync(MessagePushRequest body, String channelToken, final ApiCallback<ResultOfMessagePushResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createMessageValidateBeforeCall(body, xChannelToken, _callback);
+        okhttp3.Call localVarCall = createMessageValidateBeforeCall(body, channelToken, _callback);
         Type localVarReturnType = new TypeToken<ResultOfMessagePushResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -178,7 +175,7 @@ public class DaDaPushMessageApi {
     /**
      * Build call for deleteMessage
      * @param messageId messageId (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -188,7 +185,7 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteMessageCall(Long messageId, String xChannelToken, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteMessageCall(Long messageId, String channelToken, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
@@ -198,8 +195,9 @@ public class DaDaPushMessageApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xChannelToken != null) {
-            localVarHeaderParams.put("x-channel-token", localVarApiClient.parameterToString(xChannelToken));
+        if (channelToken != null) {
+            localVarHeaderParams.put("x-channel-token", localVarApiClient.parameterToString(
+                channelToken));
         }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
@@ -222,7 +220,7 @@ public class DaDaPushMessageApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteMessageValidateBeforeCall(Long messageId, String xChannelToken, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteMessageValidateBeforeCall(Long messageId, String channelToken, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'messageId' is set
         if (messageId == null) {
@@ -230,7 +228,7 @@ public class DaDaPushMessageApi {
         }
         
 
-        okhttp3.Call localVarCall = deleteMessageCall(messageId, xChannelToken, _callback);
+        okhttp3.Call localVarCall = deleteMessageCall(messageId, channelToken, _callback);
         return localVarCall;
 
     }
@@ -239,7 +237,7 @@ public class DaDaPushMessageApi {
      * delete a Channel Message
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;10 request per 1s&lt;/li&gt;&lt;li&gt;100 request per 1m&lt;/li&gt;&lt;li&gt;1000 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param messageId messageId (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @return Result
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -248,8 +246,8 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public Result deleteMessage(Long messageId, String xChannelToken) throws ApiException {
-        ApiResponse<Result> localVarResp = deleteMessageWithHttpInfo(messageId, xChannelToken);
+    public Result deleteMessage(Long messageId, String channelToken) throws ApiException {
+        ApiResponse<Result> localVarResp = deleteMessageWithHttpInfo(messageId, channelToken);
         return localVarResp.getData();
     }
 
@@ -257,7 +255,7 @@ public class DaDaPushMessageApi {
      * delete a Channel Message
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;10 request per 1s&lt;/li&gt;&lt;li&gt;100 request per 1m&lt;/li&gt;&lt;li&gt;1000 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param messageId messageId (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @return ApiResponse&lt;Result&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -266,8 +264,8 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Result> deleteMessageWithHttpInfo(Long messageId, String xChannelToken) throws ApiException {
-        okhttp3.Call localVarCall = deleteMessageValidateBeforeCall(messageId, xChannelToken, null);
+    public ApiResponse<Result> deleteMessageWithHttpInfo(Long messageId, String channelToken) throws ApiException {
+        okhttp3.Call localVarCall = deleteMessageValidateBeforeCall(messageId, channelToken, null);
         Type localVarReturnType = new TypeToken<Result>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -276,7 +274,7 @@ public class DaDaPushMessageApi {
      * delete a Channel Message (asynchronously)
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;10 request per 1s&lt;/li&gt;&lt;li&gt;100 request per 1m&lt;/li&gt;&lt;li&gt;1000 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param messageId messageId (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -286,9 +284,9 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteMessageAsync(Long messageId, String xChannelToken, final ApiCallback<Result> _callback) throws ApiException {
+    public okhttp3.Call deleteMessageAsync(Long messageId, String channelToken, final ApiCallback<Result> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteMessageValidateBeforeCall(messageId, xChannelToken, _callback);
+        okhttp3.Call localVarCall = deleteMessageValidateBeforeCall(messageId, channelToken, _callback);
         Type localVarReturnType = new TypeToken<Result>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -296,7 +294,7 @@ public class DaDaPushMessageApi {
     /**
      * Build call for getMessage
      * @param messageId messageId (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -306,7 +304,7 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMessageCall(Long messageId, String xChannelToken, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getMessageCall(Long messageId, String channelToken, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
@@ -316,8 +314,9 @@ public class DaDaPushMessageApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xChannelToken != null) {
-            localVarHeaderParams.put("x-channel-token", localVarApiClient.parameterToString(xChannelToken));
+        if (channelToken != null) {
+            localVarHeaderParams.put("x-channel-token", localVarApiClient.parameterToString(
+                channelToken));
         }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
@@ -340,7 +339,7 @@ public class DaDaPushMessageApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getMessageValidateBeforeCall(Long messageId, String xChannelToken, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getMessageValidateBeforeCall(Long messageId, String channelToken, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'messageId' is set
         if (messageId == null) {
@@ -348,7 +347,7 @@ public class DaDaPushMessageApi {
         }
         
 
-        okhttp3.Call localVarCall = getMessageCall(messageId, xChannelToken, _callback);
+        okhttp3.Call localVarCall = getMessageCall(messageId, channelToken, _callback);
         return localVarCall;
 
     }
@@ -357,7 +356,7 @@ public class DaDaPushMessageApi {
      * get a Channel Message
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;10 request per 1s&lt;/li&gt;&lt;li&gt;100 request per 1m&lt;/li&gt;&lt;li&gt;1000 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param messageId messageId (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @return ResultOfMessageObject
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -366,8 +365,9 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ResultOfMessageObject getMessage(Long messageId, String xChannelToken) throws ApiException {
-        ApiResponse<ResultOfMessageObject> localVarResp = getMessageWithHttpInfo(messageId, xChannelToken);
+    public ResultOfMessageObject getMessage(Long messageId, String channelToken) throws ApiException {
+        ApiResponse<ResultOfMessageObject> localVarResp = getMessageWithHttpInfo(messageId,
+            channelToken);
         return localVarResp.getData();
     }
 
@@ -375,7 +375,7 @@ public class DaDaPushMessageApi {
      * get a Channel Message
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;10 request per 1s&lt;/li&gt;&lt;li&gt;100 request per 1m&lt;/li&gt;&lt;li&gt;1000 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param messageId messageId (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @return ApiResponse&lt;ResultOfMessageObject&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -384,8 +384,8 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ResultOfMessageObject> getMessageWithHttpInfo(Long messageId, String xChannelToken) throws ApiException {
-        okhttp3.Call localVarCall = getMessageValidateBeforeCall(messageId, xChannelToken, null);
+    public ApiResponse<ResultOfMessageObject> getMessageWithHttpInfo(Long messageId, String channelToken) throws ApiException {
+        okhttp3.Call localVarCall = getMessageValidateBeforeCall(messageId, channelToken, null);
         Type localVarReturnType = new TypeToken<ResultOfMessageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -394,7 +394,7 @@ public class DaDaPushMessageApi {
      * get a Channel Message (asynchronously)
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;10 request per 1s&lt;/li&gt;&lt;li&gt;100 request per 1m&lt;/li&gt;&lt;li&gt;1000 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param messageId messageId (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -404,9 +404,9 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMessageAsync(Long messageId, String xChannelToken, final ApiCallback<ResultOfMessageObject> _callback) throws ApiException {
+    public okhttp3.Call getMessageAsync(Long messageId, String channelToken, final ApiCallback<ResultOfMessageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getMessageValidateBeforeCall(messageId, xChannelToken, _callback);
+        okhttp3.Call localVarCall = getMessageValidateBeforeCall(messageId, channelToken, _callback);
         Type localVarReturnType = new TypeToken<ResultOfMessageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -415,7 +415,7 @@ public class DaDaPushMessageApi {
      * Build call for getMessages
      * @param page greater than 1 (required)
      * @param pageSize range is 1,50 (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -425,7 +425,7 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMessagesCall(Integer page, Integer pageSize, String xChannelToken, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getMessagesCall(Integer page, Integer pageSize, String channelToken, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
@@ -442,8 +442,9 @@ public class DaDaPushMessageApi {
         }
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xChannelToken != null) {
-            localVarHeaderParams.put("x-channel-token", localVarApiClient.parameterToString(xChannelToken));
+        if (channelToken != null) {
+            localVarHeaderParams.put("x-channel-token", localVarApiClient.parameterToString(
+                channelToken));
         }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
@@ -466,7 +467,7 @@ public class DaDaPushMessageApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getMessagesValidateBeforeCall(Integer page, Integer pageSize, String xChannelToken, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getMessagesValidateBeforeCall(Integer page, Integer pageSize, String channelToken, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'page' is set
         if (page == null) {
@@ -479,7 +480,7 @@ public class DaDaPushMessageApi {
         }
         
 
-        okhttp3.Call localVarCall = getMessagesCall(page, pageSize, xChannelToken, _callback);
+        okhttp3.Call localVarCall = getMessagesCall(page, pageSize, channelToken, _callback);
         return localVarCall;
 
     }
@@ -489,7 +490,7 @@ public class DaDaPushMessageApi {
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;1 request per 1s&lt;/li&gt;&lt;li&gt;45 request per 1m&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param page greater than 1 (required)
      * @param pageSize range is 1,50 (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @return ResultOfPageResponseOfMessageObject
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -498,8 +499,9 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ResultOfPageResponseOfMessageObject getMessages(Integer page, Integer pageSize, String xChannelToken) throws ApiException {
-        ApiResponse<ResultOfPageResponseOfMessageObject> localVarResp = getMessagesWithHttpInfo(page, pageSize, xChannelToken);
+    public ResultOfPageResponseOfMessageObject getMessages(Integer page, Integer pageSize, String channelToken) throws ApiException {
+        ApiResponse<ResultOfPageResponseOfMessageObject> localVarResp = getMessagesWithHttpInfo(page, pageSize,
+            channelToken);
         return localVarResp.getData();
     }
 
@@ -508,7 +510,7 @@ public class DaDaPushMessageApi {
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;1 request per 1s&lt;/li&gt;&lt;li&gt;45 request per 1m&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param page greater than 1 (required)
      * @param pageSize range is 1,50 (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @return ApiResponse&lt;ResultOfPageResponseOfMessageObject&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -517,8 +519,8 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ResultOfPageResponseOfMessageObject> getMessagesWithHttpInfo(Integer page, Integer pageSize, String xChannelToken) throws ApiException {
-        okhttp3.Call localVarCall = getMessagesValidateBeforeCall(page, pageSize, xChannelToken, null);
+    public ApiResponse<ResultOfPageResponseOfMessageObject> getMessagesWithHttpInfo(Integer page, Integer pageSize, String channelToken) throws ApiException {
+        okhttp3.Call localVarCall = getMessagesValidateBeforeCall(page, pageSize, channelToken, null);
         Type localVarReturnType = new TypeToken<ResultOfPageResponseOfMessageObject>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -528,7 +530,7 @@ public class DaDaPushMessageApi {
      * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;1 request per 1s&lt;/li&gt;&lt;li&gt;45 request per 1m&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
      * @param page greater than 1 (required)
      * @param pageSize range is 1,50 (required)
-     * @param xChannelToken see: https://www.dadapush.com/channel/list (optional)
+     * @param channelToken see: https://www.dadapush.com/channel/list (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -538,9 +540,9 @@ public class DaDaPushMessageApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMessagesAsync(Integer page, Integer pageSize, String xChannelToken, final ApiCallback<ResultOfPageResponseOfMessageObject> _callback) throws ApiException {
+    public okhttp3.Call getMessagesAsync(Integer page, Integer pageSize, String channelToken, final ApiCallback<ResultOfPageResponseOfMessageObject> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getMessagesValidateBeforeCall(page, pageSize, xChannelToken, _callback);
+        okhttp3.Call localVarCall = getMessagesValidateBeforeCall(page, pageSize, channelToken, _callback);
         Type localVarReturnType = new TypeToken<ResultOfPageResponseOfMessageObject>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
