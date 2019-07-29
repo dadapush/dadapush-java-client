@@ -13,19 +13,22 @@
 
 package com.dadapush.client.api;
 
+import com.dadapush.client.ApiClient;
 import com.dadapush.client.ApiException;
+import com.dadapush.client.model.Action;
+import com.dadapush.client.model.Action.TypeEnum;
 import com.dadapush.client.model.MessagePushRequest;
 import com.dadapush.client.model.Result;
 import com.dadapush.client.model.ResultOfMessageObject;
 import com.dadapush.client.model.ResultOfMessagePushResponse;
 import com.dadapush.client.model.ResultOfPageResponseOfMessageObject;
-import org.junit.Test;
-import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  * API tests for DaDaPushMessageApi
@@ -33,76 +36,125 @@ import java.util.Map;
 @Ignore
 public class DaDaPushMessageApiTest {
 
-    private final DaDaPushMessageApi api = new DaDaPushMessageApi();
+  private final DaDaPushMessageApi api = new DaDaPushMessageApi();
 
-    
-    /**
-     * push Message to a Channel
-     *
-     * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;1 request per 1s&lt;/li&gt;&lt;li&gt;30 request per 1m&lt;/li&gt;&lt;li&gt;500 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void createMessageTest() throws ApiException {
-        MessagePushRequest body = null;
-        String xChannelToken = null;
-        ResultOfMessagePushResponse response = api.createMessage(body, xChannelToken);
+  private String xChannelToken = null;
 
-        // TODO: test validations
-    }
-    
-    /**
-     * delete a Channel Message
-     *
-     * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;10 request per 1s&lt;/li&gt;&lt;li&gt;100 request per 1m&lt;/li&gt;&lt;li&gt;1000 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void deleteMessageTest() throws ApiException {
-        Long messageId = null;
-        String xChannelToken = null;
-        Result response = api.deleteMessage(messageId, xChannelToken);
+  @Before
+  public void setup() {
+    ApiClient client = new ApiClient();
+    api.setApiClient(client);
+    xChannelToken = "ctb3lwO6AeiZOwqZgp8BE8980FdNgp0cp6MCf";
+    Objects.requireNonNull(xChannelToken,"required parameter: x-channel-token");
+  }
 
-        // TODO: test validations
-    }
-    
-    /**
-     * get a Channel Message
-     *
-     * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;10 request per 1s&lt;/li&gt;&lt;li&gt;100 request per 1m&lt;/li&gt;&lt;li&gt;1000 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getMessageTest() throws ApiException {
-        Long messageId = null;
-        String xChannelToken = null;
-        ResultOfMessageObject response = api.getMessage(messageId, xChannelToken);
+  /**
+   * push Message to a Channel
+   *
+   * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;1 request per 1s&lt;/li&gt;&lt;li&gt;30
+   * request per 1m&lt;/li&gt;&lt;li&gt;500 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result
+   * code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server
+   * error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not
+   * exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not
+   * exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad
+   * request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request,
+   * please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate
+   * username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user
+   * password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305:
+   * user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307:
+   * user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void createMessageTest() throws ApiException {
+    MessagePushRequest body = new MessagePushRequest();
+    Action action = new Action();
+    action.setName("view");
+    action.setType(TypeEnum.LINK);
+    action.setUrl("https://www.dadapush.com/");
+    body.setActions(Collections.singletonList(action));
+    body.setNeedPush(true);
+    body.setTitle("Good News!");
+    body.setContent("Good News! DaDaPush releasing new version");
+    ResultOfMessagePushResponse response = api.createMessage(body, xChannelToken);
+    System.out.println(response);
+  }
 
-        // TODO: test validations
-    }
-    
-    /**
-     * get Message List
-     *
-     * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;1 request per 1s&lt;/li&gt;&lt;li&gt;45 request per 1m&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request, please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305: user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307: user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getMessagesTest() throws ApiException {
-        Integer page = null;
-        Integer pageSize = null;
-        String xChannelToken = null;
-        ResultOfPageResponseOfMessageObject response = api.getMessages(page, pageSize, xChannelToken);
+  /**
+   * delete a Channel Message
+   *
+   * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;10 request per 1s&lt;/li&gt;&lt;li&gt;100
+   * request per 1m&lt;/li&gt;&lt;li&gt;1000 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result
+   * code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server
+   * error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not
+   * exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not
+   * exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad
+   * request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request,
+   * please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate
+   * username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user
+   * password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305:
+   * user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307:
+   * user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteMessageTest() throws ApiException {
+    Long messageId = 227820L;
+    Result response = api.deleteMessage(messageId, xChannelToken);
+    System.out.println(response);
+  }
 
-        // TODO: test validations
-    }
-    
+  /**
+   * get a Channel Message
+   *
+   * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;10 request per 1s&lt;/li&gt;&lt;li&gt;100
+   * request per 1m&lt;/li&gt;&lt;li&gt;1000 request per 1h&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result
+   * code/errmsg List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server
+   * error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not
+   * exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not
+   * exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad
+   * request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request,
+   * please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate
+   * username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user
+   * password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305:
+   * user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307:
+   * user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getMessageTest() throws ApiException {
+    Long messageId = 227821L;
+    ResultOfMessageObject response = api.getMessage(messageId, xChannelToken);
+    System.out.println(response);
+  }
+
+  /**
+   * get Message List
+   *
+   * &lt;h2&gt;Rate Limit:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;1 request per 1s&lt;/li&gt;&lt;li&gt;45
+   * request per 1m&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Result code/errmsg
+   * List:&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;0: ok&lt;/li&gt;&lt;li&gt;1: server
+   * error&lt;/li&gt;&lt;li&gt;101: channel is exists&lt;/li&gt;&lt;li&gt;102: channel is not
+   * exists&lt;/li&gt;&lt;li&gt;103: channel token error&lt;/li&gt;&lt;li&gt;104: channel is not
+   * exists&lt;/li&gt;&lt;li&gt;105: message is not exists&lt;/li&gt;&lt;li&gt;204: bad
+   * request&lt;/li&gt;&lt;li&gt;205: permission deny&lt;/li&gt;&lt;li&gt;206: too many request,
+   * please after 5 minutes to try!&lt;/li&gt;&lt;li&gt;301: duplicate
+   * username/email&lt;/li&gt;&lt;li&gt;302: user is not exists&lt;/li&gt;&lt;li&gt;303: user
+   * password is error&lt;/li&gt;&lt;li&gt;304: client push token is error&lt;/li&gt;&lt;li&gt;305:
+   * user is disabled&lt;/li&gt;&lt;li&gt;306: your subscription is expired&lt;/li&gt;&lt;li&gt;307:
+   * user not subscribe channel&lt;/li&gt;&lt;/ul&gt;
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getMessagesTest() throws ApiException {
+    Integer page = 1;
+    Integer pageSize = 10;
+    ResultOfPageResponseOfMessageObject response = api.getMessages(page, pageSize, xChannelToken);
+    System.out.println(response);
+  }
+
 }
